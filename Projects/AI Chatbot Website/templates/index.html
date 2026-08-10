@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Shirsho AI</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<div class="sidebar">
+
+<h2>
+✨ Shirsho AI
+</h2>
+
+
+<button>
++ New Chat
+</button>
+
+
+<select id="mode">
+
+<option value="assistant">
+General AI
+</option>
+
+
+<option value="coder">
+Coding Assistant
+</option>
+
+</select>
+
+
+</div>
+
+
+
+
+<div class="main">
+
+
+<div id="chat">
+
+<div class="welcome">
+
+<h1>
+How can I help?
+</h1>
+
+</div>
+
+</div>
+
+
+
+<div class="input">
+
+<input id="msg"
+placeholder="Ask Shirsho anything..."
+>
+
+
+<button onclick="send()">
+➤
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script src="/static/script.js"></script>
+
+</body>
+
+</html>

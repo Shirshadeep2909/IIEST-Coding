@@ -1,0 +1,7 @@
+flask
+ollama
+flask-cors
+pypdf
+chromadb
+sentence-transformers
+markdown
