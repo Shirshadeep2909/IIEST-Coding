@@ -129,3 +129,39 @@ Some features I want to add later:
 Shirshadeep Sarkar
 
 IIEST Shibpur
+
+## Updated local setup and checks
+
+Run `ollama serve`, then `ollama pull llama3.2`. In this project directory,
+install `requirements.txt` and run `python app.py`. Debug mode is off by default;
+set `FLASK_DEBUG=1` only when debugging locally. The Ollama Python client uses
+`OLLAMA_HOST` if set; `OLLAMA_MODEL` overrides the default `llama3.2`.
+Inference has a 120-second request timeout and uses the latest 20 chat turns.
+
+Each browser session has separate history. Refresh restores that history;
+**New Chat** starts a separate conversation. Old conversations remain in SQLite.
+New data is stored in `instance/chats.sqlite3`, leaving the legacy
+`database/chats.db` untouched. `CHAT_DATABASE` can override the database path.
+A private signing key is generated in `instance/session.key`; retain it across
+restarts, or supply `FLASK_SECRET_KEY`. Keep the instance directory private.
+
+The UI serves bundled Marked 15.0.12 and DOMPurify 3.4.16 locally; their licenses
+are included under `static/vendor`. No CDN is required at runtime.
+
+Backend regression checks (mock inference; no model download required):
+
+```sh
+python -m unittest discover -s tests -v
+```
+
+Frontend regression checks with Node.js and jsdom installed outside the repository:
+
+```sh
+npm install --prefix /tmp/iiest-frontend-check jsdom
+NODE_PATH=/tmp/iiest-frontend-check/node_modules node tests/frontend.cjs
+```
+
+For a real inference check, use the UI to send a message, verify a nonempty
+reply, then refresh and confirm both messages remain. A missing model, stopped
+Ollama service, or timeout should show an actionable error and preserve your
+input for retry without saving a failed turn.
