@@ -14,31 +14,56 @@
 <body>
 
 
+<div class="background-pattern"></div>
+
+
 <div class="app">
 
 
+<!-- Sidebar -->
+
 <div class="sidebar">
 
-<h2>
-✨ Shirsho AI
-</h2>
+
+<div class="brand">
+
+<div class="logo">
+🤖
+</div>
+
+<div>
+<h2>Shirsho AI</h2>
+<p>Local AI Assistant</p>
+</div>
+
+</div>
 
 
-<button>
-+ New Chat
+
+<button class="new-chat" onclick="newChat()">
+＋ New Chat
 </button>
+
+
+
+<div class="section">
+
+<label>
+AI MODE
+</label>
 
 
 <select id="mode">
 
 <option value="assistant">
-General AI
+General Assistant
 </option>
 
 
 <option value="coder">
 Coding Assistant
 </option>
+
 
 </select>
 
@@ -48,28 +73,108 @@ Coding Assistant
 
 
 
+<div class="info">
+
+
+<h4>Powered By</h4>
+
+<p>
+⚡ Ollama
+</p>
+
+<p>
+🧠 Llama 3.2
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- Main -->
+
 <div class="main">
+
+
+<div class="topbar">
+
+
+<div>
+
+<h2>
+Shirsho AI
+</h2>
+
+<p>
+Your personal AI assistant
+</p>
+
+</div>
+
+
+<div class="status">
+
+<span></span>
+
+Online
+
+</div>
+
+
+</div>
+
+
+
 
 
 <div id="chat">
 
+
 <div class="welcome">
 
+<div class="welcome-icon">
+🤖
+</div>
+
+
 <h1>
-How can I help?
+How can I help you?
 </h1>
 
-</div>
+
+<p>
+Ask me about coding, learning, ideas and more.
+</p>
+
 
 </div>
 
 
+</div>
 
-<div class="input">
 
-<input id="msg"
-placeholder="Ask Shirsho anything..."
->
+
+
+
+
+<div class="input-box">
+
+
+<input
+
+id="msg"
+
+placeholder="Message Shirsho AI..."
+
+autocomplete="off"
+
+/>
 
 
 <button onclick="send()">
@@ -80,15 +185,20 @@ placeholder="Ask Shirsho anything..."
 </div>
 
 
+
+</div>
+
+
 </div>
 
 
 
-</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script src="/static/script.js"></script>
+
 
 </body>
 

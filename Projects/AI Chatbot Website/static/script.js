@@ -1,104 +1,171 @@
-async function send() {
-
-    let box = document.getElementById("msg");
-
-    let text = box.value.trim();
-
-    if (text === "")
-        return;
+async function send(){
 
 
-    let chat = document.getElementById("chat");
+let box=document.getElementById("msg");
 
 
-    // Display user message
-    chat.innerHTML +=
-    `
-    <div class="user">
-        ${text}
-    </div>
-    `;
-
-
-    box.value = "";
-
-    // Keep cursor in input box
-    box.focus();
-
-
-    // Display loading message
-    let loading =
-    document.createElement("div");
-
-    loading.className = "ai";
-
-    loading.innerHTML = "Thinking...";
-
-    chat.appendChild(loading);
-
-
-    chat.scrollTop = chat.scrollHeight;
+let text=box.value.trim();
 
 
 
-    try {
-
-        let response = await fetch(
-            "/chat",
-            {
-                method: "POST",
-
-                headers:
-                {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify(
-                {
-                    message: text,
-
-                    mode:
-                    document.getElementById("mode").value
-                })
-            }
-        );
+if(text==="")
+return;
 
 
-        let data = await response.json();
+
+let chat=document.getElementById("chat");
 
 
-        // Replace Thinking with AI response
-        loading.innerHTML = marked.parse(data.reply);
+
+chat.innerHTML +=
+
+`
+<div class="user">
+${text}
+</div>
+`;
 
 
-    }
 
-    catch(error) {
-
-        loading.innerHTML =
-        "⚠️ Error connecting to AI";
-
-        console.log(error);
-
-    }
+box.value="";
 
 
-    chat.scrollTop = chat.scrollHeight;
+box.focus();
+
+
+
+let loading=document.createElement("div");
+
+
+loading.className="ai";
+
+
+loading.innerHTML="Thinking...";
+
+
+chat.appendChild(loading);
+
+
+
+chat.scrollTop=chat.scrollHeight;
+
+
+
+try{
+
+
+let response=await fetch(
+
+"/chat",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+message:text,
+
+mode:
+document.getElementById("mode").value
+
+})
+
+}
+
+);
+
+
+
+let data=await response.json();
+
+
+
+loading.innerHTML=
+marked.parse(data.reply);
+
+
 
 }
 
 
 
-// Press Enter to send message
-document.getElementById("msg").addEventListener(
-    "keydown",
-    function(event) {
+catch(error){
 
-        if(event.key === "Enter") {
 
-            send();
+loading.innerHTML=
+"⚠️ Unable to connect to AI";
 
-        }
 
-    }
+console.log(error);
+
+
+}
+
+
+
+chat.scrollTop=
+chat.scrollHeight;
+
+
+}
+
+
+
+
+
+// ENTER TO SEND
+
+
+document
+.getElementById("msg")
+.addEventListener(
+
+"keydown",
+
+function(event){
+
+
+if(event.key==="Enter"){
+
+send();
+
+}
+
+
+}
+
 );
+
+function newChat(){
+
+    let chat = document.getElementById("chat");
+
+    chat.innerHTML = `
+
+    <div class="welcome">
+
+        <div class="welcome-icon">
+        🤖
+        </div>
+
+        <h1>
+        How can I help you?
+        </h1>
+
+        <p>
+        Ask me about coding, learning, ideas and more.
+        </p>
+
+    </div>
+
+    `;
+
+}
