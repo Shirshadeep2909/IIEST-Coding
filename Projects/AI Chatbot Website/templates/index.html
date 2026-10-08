@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Shirsho AI</title>
 
@@ -40,7 +42,7 @@
 
 
 
-<button class="new-chat" onclick="newChat()">
+<button class="new-chat" id="new-chat" type="button">
 ＋ New Chat
 </button>
 
@@ -168,7 +170,7 @@ Ask me about coding, learning, ideas and more.
 
 <input
 
-id="msg"
+id="msg" maxlength="8000" aria-label="Message"
 
 placeholder="Message Shirsho AI..."
 
@@ -177,7 +179,7 @@ autocomplete="off"
 />
 
 
-<button onclick="send()">
+<button id="send-button" type="button" aria-label="Send message">
 ➤
 </button>
 
@@ -195,7 +197,8 @@ autocomplete="off"
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/static/vendor/marked.min.js"></script>
+<script src="/static/vendor/purify.min.js"></script>
 
 <script src="/static/script.js"></script>
 
